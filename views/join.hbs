@@ -1,6 +1,5 @@
-{% extends 'layout.html' %}
-
-{% block content %}
+{{> layout }}
+{{#*inline "content"}}
   <div class="timeline">
     <form id="join-form" action="/auth/join" method="post">
       <div class="input-group">
@@ -16,9 +15,9 @@
       <button id="join-btn" type="submit" class="btn">회원가입</button>
     </form>
   </div>
-{% endblock %}
+{{/inline}}
 
-{% block script %}
+{{#*inline "script"}}
   <script>
     window.onload = () => {
       if (new URL(location.href).searchParams.get('error')) {
@@ -26,4 +25,4 @@
       }
     };
   </script>
-{% endblock %}
+{{/inline}}

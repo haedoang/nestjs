@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { CountMiddleware } from './common/middleware/count.middleware';
 import { HandlebarsModule } from './handlebars/handlebars.module';
+import { User } from './db/user/users.entitiy';
+import { UserModule } from './db/user/user.module';
 dotenv.config({});
 
 @Module({
@@ -16,10 +18,12 @@ dotenv.config({});
       username : process.env.MYSQL_USER,
       password : process.env.MYSQL_PASS,
       database : process.env.MYSQL_DATABASE,
-      entities : [],
+      entities : [User],
+      logging : true
       //synchronize : false
     }),
-    HandlebarsModule
+    HandlebarsModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
